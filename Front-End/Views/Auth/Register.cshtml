@@ -1,0 +1,128 @@
+@model WishListWeb.Models.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Criar Conta";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow border-0">
+                <div class="card-body p-4">
+                    <div class="text-center mb-4">
+                        <span style="font-size: 3rem;">💌</span>
+                        <h2 class="mt-2">Cadastre-se</h2>
+                        <p class="text-muted">Crie sua conta para começar a sonhar 💕</p>
+                    </div>
+
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="bi bi-exclamation-circle-fill me-2"></i>
+                            @ViewBag.Error
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+
+                    <form asp-action="Register" method="post" id="registerForm">
+                        <div class="mb-3">
+                            <label asp-for="Nome" class="form-label fw-bold">👤 Nome Completo</label>
+                            <input asp-for="Nome" class="form-control" placeholder="Digite seu nome completo" />
+                            <span asp-validation-for="Nome" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label fw-bold">📧 E-mail</label>
+                            <input asp-for="Email" class="form-control" placeholder="seu@email.com" type="email" />
+                            <span asp-validation-for="Email" class="text-danger small"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Senha" class="form-label fw-bold">🔐 Senha</label>
+                                <div class="input-group">
+                                    <input asp-for="Senha" type="password" class="form-control" id="senha" placeholder="Min. 6 caracteres" />
+                                    <button class="btn btn-outline-secondary" type="button" id="toggleSenha">
+                                        <i class="bi bi-eye-fill" id="iconSenha"></i>
+                                    </button>
+                                </div>
+                                <span asp-validation-for="Senha" class="text-danger small"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="ConfirmarSenha" class="form-label fw-bold">✓ Confirmar</label>
+                                <div class="input-group">
+                                    <input asp-for="ConfirmarSenha" type="password" class="form-control" id="confirmarSenha" placeholder="Repita a senha" />
+                                    <button class="btn btn-outline-secondary" type="button" id="toggleConfirmarSenha">
+                                        <i class="bi bi-eye-fill" id="iconConfirmarSenha"></i>
+                                    </button>
+                                </div>
+                                <span asp-validation-for="ConfirmarSenha" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Role" class="form-label fw-bold">💑 Eu sou...</label>
+                            <select asp-for="Role" class="form-select" id="roleSelect">
+                                <option value="">-- Selecione --</option>
+                                <option value="Namorado">👨 Namorado</option>
+                                <option value="Namorada">👩 Namorada</option>
+                            </select>
+                            <span asp-validation-for="Role" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3" id="codigoNamoradaContainer" style="display:none;">
+                            <label asp-for="CodigoNamorada" class="form-label fw-bold">🔑 Código da Namorada</label>
+                            <input asp-for="CodigoNamorada" class="form-control" placeholder="Digite o código secreto" />
+                            <span asp-validation-for="CodigoNamorada" class="text-danger small"></span>
+                            <small class="text-muted">Apenas para identificar o par.</small>
+                        </div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg" id="btnSubmit">
+                                Criar Minha Conta ✨
+                            </button>
+                            <a asp-action="Login" class="btn btn-link text-secondary">
+                                Já tenho conta
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        document.getElementById('roleSelect').addEventListener('change', function() {
+            const container = document.getElementById('codigoNamoradaContainer');
+            if (this.value === 'Namorado' || this.value === 'Namorada') {
+                container.style.display = 'block';
+            } else {
+                container.style.display = 'none';
+            }
+        });
+
+        document.getElementById('toggleSenha').addEventListener('click', function() {
+            const senhaInput = document.getElementById('senha');
+            const icon = document.getElementById('iconSenha');
+            senhaInput.type = senhaInput.type === 'password' ? 'text' : 'password';
+        });
+
+        document.getElementById('toggleConfirmarSenha').addEventListener('click', function() {
+            const confirmarInput = document.getElementById('confirmarSenha');
+            confirmarInput.type = confirmarInput.type === 'password' ? 'text' : 'password';
+        });
+
+        const form = document.getElementById('registerForm');
+        const btnSubmit = document.getElementById('btnSubmit');
+        form.addEventListener('submit', function() {
+            if (form.checkValidity()) {
+                btnSubmit.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Criando...';
+                btnSubmit.disabled = true;
+            }
+        });
+    </script>
+}
