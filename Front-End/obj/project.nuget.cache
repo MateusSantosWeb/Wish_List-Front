@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "H37nVeUl3iV+4kYLKWAtJOP6o9alwQC+a2pZNa/EQxlK/aZoblhb+YuYDC18t1nKBpeL1fkjJ94hBBabdJwb/w==",
+  "dgSpecHash": "Ev52+L+OuME=",
   "success": true,
-  "projectFilePath": "/home/mateus.santos@toshyro.local/Documentos/Front-End-DarkRomance-Final (3)/Front-End/WishListWeb.csproj",
+  "projectFilePath": "/home/mateus.santos@toshyro.local/Documentos/Front-End-DarkRomance-Final /Front-End/WishListWeb.csproj",
   "expectedPackageFiles": [
     "/home/mateus.santos@toshyro.local/.nuget/packages/microsoft.extensions.configuration/10.0.2/microsoft.extensions.configuration.10.0.2.nupkg.sha512",
     "/home/mateus.santos@toshyro.local/.nuget/packages/microsoft.extensions.configuration.abstractions/10.0.2/microsoft.extensions.configuration.abstractions.10.0.2.nupkg.sha512",

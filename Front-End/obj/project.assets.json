@@ -773,11 +773,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/mateus.santos@toshyro.local/Documentos/Front-End-DarkRomance-Final (3)/Front-End/WishListWeb.csproj",
+      "projectUniqueName": "/home/mateus.santos@toshyro.local/Documentos/Front-End-DarkRomance-Final /Front-End/WishListWeb.csproj",
       "projectName": "WishListWeb",
-      "projectPath": "/home/mateus.santos@toshyro.local/Documentos/Front-End-DarkRomance-Final (3)/Front-End/WishListWeb.csproj",
+      "projectPath": "/home/mateus.santos@toshyro.local/Documentos/Front-End-DarkRomance-Final /Front-End/WishListWeb.csproj",
       "packagesPath": "/home/mateus.santos@toshyro.local/.nuget/packages/",
-      "outputPath": "/home/mateus.santos@toshyro.local/Documentos/Front-End-DarkRomance-Final (3)/Front-End/obj/",
+      "outputPath": "/home/mateus.santos@toshyro.local/Documentos/Front-End-DarkRomance-Final /Front-End/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/mateus.santos@toshyro.local/.nuget/NuGet/NuGet.Config"
@@ -798,7 +798,13 @@
         "warnAsError": [
           "NU1605"
         ]
-      }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -828,7 +834,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.122/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/mateus.santos@toshyro.local/.dotnet/sdk/10.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
