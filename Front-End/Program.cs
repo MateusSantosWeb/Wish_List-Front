@@ -8,7 +8,12 @@ builder.Services.AddControllersWithViews();
 // Registra o serviço que faz chamadas para a API
 builder.Services.AddHttpClient<ApiServices>(client =>
 {
-    var baseUrl = builder.Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5214/";
+    var baseUrl = builder.Configuration["ApiSettings:BaseUrl"];
+    if (string.IsNullOrWhiteSpace(baseUrl))
+    {
+        throw new InvalidOperationException("ApiSettings:BaseUrl nao configurado.");
+    }
+
     client.BaseAddress = new Uri(baseUrl);
 });
 
