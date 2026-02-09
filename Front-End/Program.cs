@@ -8,8 +8,8 @@ builder.Services.AddControllersWithViews();
 // Registra o serviço que faz chamadas para a API
 builder.Services.AddHttpClient<ApiServices>(client =>
 {
-    // Verifique se a porta da sua API é mesmo 5214
-    client.BaseAddress = new Uri("http://localhost:5214/"); 
+    var baseUrl = builder.Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5214/";
+    client.BaseAddress = new Uri(baseUrl);
 });
 
 // Configura o armazenamento de Sessão (Onde guardaremos o Token JWT)
