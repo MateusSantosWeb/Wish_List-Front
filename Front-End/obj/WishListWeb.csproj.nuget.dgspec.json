@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "/home/mateus.santos@toshyro.local/Downloads/Wish_List-Front-master/Front-End/WishListWeb.csproj": {}
   },
   "projects": {
@@ -12,6 +13,19 @@
         "projectPath": "/home/mateus.santos@toshyro.local/Downloads/Wish_List-Front-master/Front-End/WishListWeb.csproj",
         "packagesPath": "/home/mateus.santos@toshyro.local/.nuget/packages/",
         "outputPath": "/home/mateus.santos@toshyro.local/Downloads/Wish_List-Front-master/Front-End/obj/",
+=======
+    "/home/mateus.santos@toshyro.local/Documentos/Front-End-DarkRomance-Final /Front-End/WishListWeb.csproj": {}
+  },
+  "projects": {
+    "/home/mateus.santos@toshyro.local/Documentos/Front-End-DarkRomance-Final /Front-End/WishListWeb.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/mateus.santos@toshyro.local/Documentos/Front-End-DarkRomance-Final /Front-End/WishListWeb.csproj",
+        "projectName": "WishListWeb",
+        "projectPath": "/home/mateus.santos@toshyro.local/Documentos/Front-End-DarkRomance-Final /Front-End/WishListWeb.csproj",
+        "packagesPath": "/home/mateus.santos@toshyro.local/.nuget/packages/",
+        "outputPath": "/home/mateus.santos@toshyro.local/Documentos/Front-End-DarkRomance-Final /Front-End/obj/",
+>>>>>>> 53d8356c9a3a8781d4debc496e3a4d878ea8eca5
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/mateus.santos@toshyro.local/.nuget/NuGet/NuGet.Config"
@@ -32,7 +46,17 @@
           "warnAsError": [
             "NU1605"
           ]
+<<<<<<< HEAD
         }
+=======
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+>>>>>>> 53d8356c9a3a8781d4debc496e3a4d878ea8eca5
       },
       "frameworks": {
         "net8.0": {
@@ -62,7 +86,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.124/PortableRuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "/home/mateus.santos@toshyro.local/.dotnet/sdk/10.0.102/PortableRuntimeIdentifierGraph.json"
+>>>>>>> 53d8356c9a3a8781d4debc496e3a4d878ea8eca5
         }
       }
     }
