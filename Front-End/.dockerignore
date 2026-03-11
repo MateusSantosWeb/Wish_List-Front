@@ -1,0 +1,9 @@
+# Do not send build artifacts to Docker build context
+bin/
+obj/
+
+# VCS / IDE
+.git/
+.vs/
+.idea/
+
