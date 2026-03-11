@@ -1,0 +1,55 @@
+@model WishListWeb.Models.WishViewModel
+@{ ViewData["Title"] = "Criar Desejo"; }
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-lg p-4">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold text-primary">💭 Novo Desejo</h2>
+                <p class="text-muted">Descreva o que faria seu coração feliz 💕</p>
+            </div>
+
+            <form asp-action="Create" method="post">
+                <div class="mb-4">
+                    <label asp-for="Titulo" class="form-label fw-bold">💎 O que é?</label>
+                    <input asp-for="Titulo" class="form-control form-control-lg rounded-3" placeholder="Ex: Jantar no terraço" required />
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Descricao" class="form-label fw-bold">✍️ Detalhes</label>
+                    <textarea asp-for="Descricao" class="form-control rounded-3" rows="3" placeholder="Dê mais detalhes sobre esse momento..."></textarea>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <label asp-for="Categoria" class="form-label fw-bold">🏷️ Categoria</label>
+                        <select asp-for="Categoria" class="form-select rounded-3">
+                            <option value="Presente">🎁 Presente</option>
+                            <option value="Viagem">✈️ Viagem</option>
+                            <option value="Experiencia">⭐ Experiência</option>
+                            <option value="Restaurante">🍽️ Restaurante</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label asp-for="Prioridade" class="form-label fw-bold">🔥 Prioridade</label>
+                        <select asp-for="Prioridade" class="form-select rounded-3">
+                            <option value="Baixa">💤 Baixa</option>
+                            <option value="Media">⚡ Média</option>
+                            <option value="Alta">🔥 Alta</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="ImagemUrl" class="form-label fw-bold">🖼️ Link de uma Imagem (URL)</label>
+                    <input asp-for="ImagemUrl" class="form-control rounded-3" placeholder="https://..." />
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg shadow">💫 Salvar Desejo</button>
+                    <a asp-action="Index" class="btn btn-link text-secondary">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

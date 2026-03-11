@@ -1,0 +1,102 @@
+@using Microsoft.AspNetCore.Http
+@model IEnumerable<WishListWeb.Models.WishViewModel>
+
+@{
+    // 1. Extraímos os valores dinâmicos para variáveis de texto simples (strings)
+    // Usamos o Context direto para evitar dependências de injeção que podem falhar
+    var rawRole = Context.Session.GetString("UserRole") ?? "Namorado";
+    var rawName = Context.Session.GetString("UserName") ?? "Usuário";
+
+    // 2. Criamos variáveis booleanas (Sim/Não) para as permissões
+    // Isso remove qualquer operação dinâmica de dentro do HTML
+    bool exibirBotaoCriar = rawRole.Equals("Namorada", StringComparison.OrdinalIgnoreCase) || 
+                            rawName.ToLower().Contains("ana");
+    
+    bool ehNamorada = exibirBotaoCriar;
+
+    // 3. Preparamos as mensagens para evitar lógica no HTML
+    string saudacao = "Olá " + rawName + ", bem-vinda! 💕";
+    string mensagemVazia = ehNamorada ? "Que tal começar a sonhar agora? ✨" : "Sua namorada ainda não adicionou nada. 💔";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-5">
+    <div>
+        <h1 class="display-5 fw-bold text-primary">💌 Nossa Lista de Desejos</h1>
+        <p class="text-muted">@saudacao</p>
+    </div>
+    
+    @if (exibirBotaoCriar) {
+        <a asp-action="Create" class="btn btn-primary btn-lg shadow px-4">
+            <i class="bi bi-plus-lg me-2"></i>Novo Desejo
+        </a>
+    }
+</div>
+
+<div class="row">
+    @if (Model == null || !Model.Any()) {
+        <div class="col-12 text-center py-5">
+            <div class="empty-state-card">
+                <div class="empty-state-icon">💫</div>
+                <h3 class="mt-3 text-primary">Ainda não há desejos por aqui...</h3>
+                <p class="text-muted">@mensagemVazia</p>
+                
+                @if (ehNamorada) { 
+                    <a asp-action="Create" class="btn btn-outline-primary mt-3 rounded-pill px-4">
+                        <i class="bi bi-heart me-2"></i>Adicionar meu primeiro desejo
+                    </a> 
+                }
+            </div>
+        </div>
+    } else {
+        @foreach (var item in Model) {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm overflow-hidden">
+                    <img src="@(string.IsNullOrEmpty(item.ImagemUrl) ? "https://placehold.co/600x400?text=Presente+Especial" : item.ImagemUrl )" class="card-img-top" style="height: 200px; object-fit: cover;">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <h5 class="card-title fw-bold">@item.Titulo</h5>
+                            <span class="badge bg-light text-primary border">@item.Categoria</span>
+                        </div>
+                        <p class="card-text text-muted small">@item.Descricao</p>
+                        <div class="d-flex justify-content-between align-items-center mt-4">
+                            <div class="d-flex flex-column gap-1">
+                                <span class="badge @(item.Prioridade == "Alta" ? "bg-danger" : "bg-info")">@item.Prioridade</span>
+                                <span class="badge @(item.Status == "Realizado" ? "bg-success" : "bg-secondary")">
+                                    @(string.IsNullOrEmpty(item.Status) ? "Pendente" : item.Status)
+                                </span>
+                            </div>
+                            
+                            @if (!ehNamorada) {
+                                <div class="d-flex gap-2">
+                                    <form asp-action="UpdateStatus" asp-route-id="@item.Id" method="post">
+                                        <input type="hidden" name="status" value="Realizado" />
+                                        <button type="submit" class="btn btn-success btn-sm rounded-pill px-3" title="Marcar como realizado">
+                                            <i class="bi bi-check2-circle me-1"></i>Realizado
+                                        </button>
+                                    </form>
+                                    <form asp-action="UpdateStatus" asp-route-id="@item.Id" method="post">
+                                        <input type="hidden" name="status" value="Pendente" />
+                                        <button type="submit" class="btn btn-outline-secondary btn-sm rounded-pill px-3" title="Marcar como pendente">
+                                            <i class="bi bi-arrow-counterclockwise me-1"></i>Pendente
+                                        </button>
+                                    </form>
+                                    <form asp-action="Delete" asp-route-id="@item.Id" method="post" onsubmit="return confirm('Apagar?');">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm rounded-circle" title="Deletar desejo">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            } else {
+                                <form asp-action="Delete" asp-route-id="@item.Id" method="post" onsubmit="return confirm('Apagar?');">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm rounded-circle" title="Deletar desejo">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

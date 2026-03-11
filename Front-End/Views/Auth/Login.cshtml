@@ -1,0 +1,47 @@
+@model WishListWeb.Models.LoginViewModel
+
+@* Não precisamos de doctype, html ou body aqui, o Layout já tem! *@
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-body p-5">
+                <h2 class="text-center mb-4">💋 WishList</h2>
+                <h5 class="text-center text-muted mb-4">Faça login para seus desejos 💕</h5>
+
+                @if (ViewBag.Error != null)
+                {
+                    <div class="alert alert-danger">@ViewBag.Error</div>
+                }
+
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success">@TempData["Success"]</div>
+                }
+
+                <form asp-controller="Auth" asp-action="Login" method="post">
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label">📧 Email</label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Senha" class="form-label">🔐 Senha</label>
+                        <input asp-for="Senha" type="password" class="form-control" />
+                        <span asp-validation-for="Senha" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 mb-3">Entrar 💫</button>
+
+                    <div class="text-center">
+                        @* Adicionei o asp-controller aqui para garantir *@
+                        <a asp-controller="Auth" asp-action="Register" class="text-decoration-none">
+                            Não tem conta? Cadastre-se ✨
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
